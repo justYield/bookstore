@@ -1,23 +1,16 @@
-package action;
+package action.bookAction;
 
+import java.util.List;
+
+import action.BaseAction;
 import model.Book;
 import service.AppService;
 
-public class DeleteBookAction extends BaseAction {
+public class AllBooksAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-
 	private AppService appService;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public void setAppService(AppService appService) {
 		this.appService = appService;
@@ -26,10 +19,9 @@ public class DeleteBookAction extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 
-		Book book = appService.getBookById(id);
-		appService.deleteBook(book);
+		List<Book> books = appService.getAllBooks();
+		request().setAttribute("books", books);
 
 		return SUCCESS;
 	}
-
 }

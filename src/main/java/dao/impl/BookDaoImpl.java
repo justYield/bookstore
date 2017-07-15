@@ -47,6 +47,12 @@ public class BookDaoImpl extends HibernateDaoSupport implements BookDao {
 		return books;
 	}
 	
+	private GridFsTemplate GridFsTemplate;
+
+	public void setGridFsTemplate(GridFsTemplate GridFsTemplate) {
+	    this.GridFsTemplate = GridFsTemplate;
+	}
+	
 	public Picture getPictureById(int id) {
 		GridFSDBFile result = GridFsTemplate.findOne(new Query(Criteria.where("metadata.id").is(id)));
 		if (result!= null){

@@ -84,7 +84,16 @@
 			<result name="success">/bookstore/jsp/homepage.jsp</result>
 			<result name="input">/bookstore/jsp/register.jsp</result>
 		</action>
-
+		
+        <!-- Release Picture  -->
+	    <action name="bookPicture" class="action.bookAction.BookPictureAction">
+		<result type="stream">
+			<param name="contentType">contentType</param>
+			<param name="inputStream">inputStream</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	    </action>
+	    
 		<action name="*">
 			<result>/{1}.jsp</result>
 		</action>

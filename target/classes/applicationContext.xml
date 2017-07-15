@@ -60,6 +60,7 @@
 	<!-- DAO Bean -->
 	<bean id="bookDao" class="dao.impl.BookDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="GridFsTemplate" ref="gridFsTemplate" />
 	</bean>
 	<bean id="orderDao" class="dao.impl.OrderDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -78,6 +79,11 @@
 		<property name="orderDao" ref="orderDao"></property>
 		<property name="orderitemDao" ref="orderitemDao"></property>
 		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<bean id="bookService" class="service.impl.BookServiceImpl">
+		<!-- DAO -->
+		<property name="bookDao" ref="bookDao"></property>
 	</bean>
 
 	<!-- HibernateTransactionManager -->

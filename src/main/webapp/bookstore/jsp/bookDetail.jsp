@@ -118,9 +118,48 @@
 					</div>
 				</div>
 				<div class="col-lg-5">
-				<a href='picture?id=<%=book.getId()%>'><img
+				<a href='bookPicture?id=<%=book.getId()%>'><img
 					class="img-responsive" id="cover"
-					src='picture?id=<%=book.getId()%>'/></a>
+					src='bookPicture?id=<%=book.getId()%>'/></a>
+				<div class = row>
+				 
+				    <div class = "col-md-5">
+				       <button id="join" class="btn btn-sm btn-primary btn-block" >加入借书车</button>
+				       <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>  
+                       <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
+                       <script src="http://bootboxjs.com/bootbox.js"></script>
+                       <script>
+                       var id = "<s:property value='#session.userId'/>";
+                       var bookid = <%=book.getId()%>;
+                       $(document).on("click", "#join", function (e){
+                    	   jQuery.ajax({
+       						url : 'addBookToCart',
+       						processData : true,
+       						dataType :  "json",
+       						data : {
+       							id : id,
+       							bookid : bookid
+       						},
+                    	   success : function(data) {
+                    		   console.log(data);
+                    		if (data == "good"){
+                    			 bootbox.alert("加入成功"); 
+   							}
+   							if (data == "error"){
+   								bootbox.alert("加入失败：请检查借出车是否已存在该书籍");
+   							}
+   							
+   							}
+                          });
+                    	   
+                       });
+                       </script>  
+				    </div>
+				    <div class = "col-md-5">
+				       <a href="#" class="btn btn-sm btn-primary btn-block" role="button">立即借书</a>
+				    </div>
+				    <div class = "col-md-1"></div>
+				</div>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
