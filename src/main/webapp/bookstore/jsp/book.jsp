@@ -46,8 +46,7 @@
 					<li><a href="allOrdersPro"><i class="fa fa-reorder fa-fw"></i>
 							Orders</a></li>
 					<li><a href="allOrderitemsPro"><i
-							class="fa fa-table fa-fw"></i>
-							Orderitems</a></li>
+							class="fa fa-table fa-fw"></i> Orderitems</a></li>
 				</ul>
 			</div>
 			<!-- /.sidebar-collapse -->
@@ -77,7 +76,7 @@
 									id="dataTables">
 									<thead>
 										<tr>
-										    <th>ID</th>
+											<th>ID</th>
 											<th>Title</th>
 											<th>Author</th>
 											<th>Price</th>
@@ -92,7 +91,7 @@
 																				Book book = bookList.get(i);
 										%>
 										<tr>
-										    <td><%=book.getId()%></td>
+											<td><%=book.getId()%></td>
 											<td><%=book.getTitle()%></td>
 											<td><%=book.getAuthor()%></td>
 											<td><%=book.getPrice()%></td>

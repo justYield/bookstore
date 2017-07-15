@@ -120,7 +120,7 @@
 													data-date="<%=order.getDate()%>">
 													<i class="fa fa-edit"></i>
 												</button>
-											</td>	
+											</td>
 										</tr>
 										<%
 											}
@@ -156,8 +156,7 @@
 						<div class="col-lg-12">
 							<form role="form">
 								<div class="form-group">
-									<label>Userid</label>
-									<select class="form-control" id="userid">
+									<label>Userid</label> <select class="form-control" id="userid">
 										<%
 											for (int i = 0; i < userList.size(); i++) {
 												User user = userList.get(i);

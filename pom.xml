@@ -213,7 +213,28 @@
 			<artifactId>xwork-core</artifactId>
 			<version>${xwork.core.version}</version>
 		</dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-json-plugin -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<version>${struts.core.version}</version>
+		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.10.3.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+		
 		<!-- Javax Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -76,7 +76,7 @@
 									id="dataTables">
 									<thead>
 										<tr>
-										    <th>ID</th>
+											<th>ID</th>
 											<th>Username</th>
 											<th>Password</th>
 											<th>Role</th>
@@ -89,7 +89,7 @@
 																				User user = userList.get(i);
 										%>
 										<tr>
-										    <td><%=user.getId()%></td>
+											<td><%=user.getId()%></td>
 											<td><%=user.getUsername()%></td>
 											<td><%=user.getPassword()%></td>
 											<td><%=user.getRole()%></td>
@@ -141,7 +141,8 @@
 						<div class="col-lg-12">
 							<form role="form">
 								<div class="form-group">
-									<label>Username</label> <input class="form-control" name="username">
+									<label>Username</label> <input class="form-control"
+										name="username">
 								</div>
 								<div class="form-group">
 									<label>Password</label> <input class="form-control"

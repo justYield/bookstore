@@ -36,45 +36,20 @@ $(function() {
 			});
 	
 			$('#modal').modal('hide');
+		} else if(user == "null") {
+			bootbox.alert({
+				message : 'Please log in',
+				callback : function() {
+					location.reload();
+				}
+			});
+		} else {
+			bootbox.alert({
+				message : 'Please enter valid amount',
+				callback : function() {
+					location.reload();
+				}
+			});
 		}
 	});
-
-	
-	$(".detail").click(function(e) {
-		bootbox.confirm({
-			buttons : {
-				confirm : {
-					label : 'Unban'
-				},
-				cancel : {
-					label : 'Cancel'
-				}
-			},
-			message : 'Sure to unban this user?',
-			callback : function(result) {
-				if (result) {
-					var dataset = e.currentTarget.dataset;
-					var id = dataset.id;
-					jQuery.ajax({
-						url : 'manageUser',
-						processData : true,
-						dataType : "text",
-						data : {
-							id : id,
-							status : 1
-						},
-						success : function(data) {
-							bootbox.alert({
-								message : 'Unban Successfully! ',
-								callback : function() {
-									location.reload();
-								}
-							});
-						}
-					});
-				}
-			}
-		});
-	});
-
 });

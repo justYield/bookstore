@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.Book"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -45,12 +45,12 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0">
-			
-		<form class= "search-bar">
+
+		<form class="search-bar">
 			<input type="text" name="searchString" />
 			<button class="btn btn-default" type="submit">Search</button>
 		</form>
-		
+
 		<div class="navbar-header">
 			<a class="navbar-brand" href="homepage">BookStore</a>
 		</div>
@@ -61,30 +61,30 @@
 					<%
 					if(session.getAttribute("username") == null) {
 					%>
-					<li><a href="<%=path%>/bookstore/jsp/login.jsp" type=redirect><i class="fa fa-sign-in fa-fw"></i>
-							Login</a></li>
-					<li><a href="<%=path%>/bookstore/jsp/register.jsp" type=redirect><i class="fa fa-plus fa-fw"></i>
-							Register</a></li>
+					<li><a href="<%=path%>/bookstore/jsp/login.jsp" type=redirect><i
+							class="fa fa-sign-in fa-fw"></i> Login</a></li>
+					<li><a href="<%=path%>/bookstore/jsp/register.jsp"
+						type=redirect><i class="fa fa-plus fa-fw"></i> Register</a></li>
 					<%} else if(session.getAttribute("role").equals("user")) {%>
-					<li><span>Hi, <s:property value="#session.username" />!</span></li>
-					<li><a href="#"><i class="fa fa-user fa-fw"></i>
-							User Info</a></li>
+					<li><span>Hi, <s:property value="#session.username" />!
+					</span></li>
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> User Info</a></li>
 					<li><a href="myOrdersPro"><i class="fa fa-reorder fa-fw"></i>
 							My Orders</a></li>
-					<li><a href="myCartPro"><i class="fa fa-shopping-cart fa-fw"></i>
-							My Cart</a></li>
+					<li><a href="myCartPro"><i
+							class="fa fa-shopping-cart fa-fw"></i> My Cart</a></li>
 					<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
 							Log out</a></li>
 					<%} else { %>
-					<li><span>Hi, <s:property value="#session.username" />!</span></li>
-					<li><a href="#"><i class="fa fa-user fa-fw"></i>
-							User Info</a></li>
+					<li><span>Hi, <s:property value="#session.username" />!
+					</span></li>
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> User Info</a></li>
 					<li><a href="allUsersPro" class="active"><i
 							class="fa fa-user fa-fw"></i> Manage</a></li>
 					<li><a href="myOrdersPro"><i class="fa fa-reorder fa-fw"></i>
 							My Orders</a></li>
-					<li><a href="myCartPro"><i class="fa fa-shopping-cart fa-fw"></i>
-							My Cart</a></li>
+					<li><a href="myCartPro"><i
+							class="fa fa-shopping-cart fa-fw"></i> My Cart</a></li>
 					<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
 							Log out</a></li>
 					<%} %>
@@ -112,7 +112,7 @@
 									id="dataTables">
 									<thead>
 										<tr>
-										    <th>ID</th>
+											<th>ID</th>
 											<th>Title</th>
 											<th>Author</th>
 											<th>Price</th>
@@ -127,25 +127,25 @@
 																				Book book = bookList.get(i);
 										%>
 										<tr>
-										    <td><%=book.getId()%></td>
+											<td><%=book.getId()%></td>
 											<td><%=book.getTitle()%></td>
 											<td><%=book.getAuthor()%></td>
 											<td><%=(float)book.getPrice()/100%></td>
 											<td><%=book.getPublisher()%></td>
 											<td><%=book.getDate()%></td>
 											<td>
-												<button class="btn btn-default" type="button" id="add" 
-														data-id="<%=book.getId()%>" data-user="<%=session.getAttribute("username")%>">
+												<button class="btn btn-default" type="button" id="add"
+													data-id="<%=book.getId()%>"
+													data-user="<%=session.getAttribute("username")%>">
 													<i class="fa fa-shopping-cart" title="add book to cart"></i>
-												</button>
-												<button class="btn btn-default detail" type="button"
-													data-id="<%=book.getId()%>">
-													<i class="fa fa-info" title="Book info"></i>
-												</button>
+												</button> <a href="detail?id=<%=book.getId()%>"> <i
+													class="fa fa-info" title="Book info">&nbsp;detail</i>
+											</a>
 											</td>
-										<%
+											<%
 											}
 										%>
+										
 									</tbody>
 								</table>
 							</div>
