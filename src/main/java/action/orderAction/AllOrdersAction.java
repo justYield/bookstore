@@ -1,13 +1,13 @@
-package action.bookAction;
+package action.orderAction;
 
 import java.util.List;
 
 import action.BaseAction;
-import model.Book;
+import model.Order;
+import model.User;
 import service.AppService;
 
-public class AllBooksAction extends BaseAction {
-	
+public class AllOrdersAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,8 +20,11 @@ public class AllBooksAction extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 
-		List<Book> books = appService.getAllBooks();
-		request().setAttribute("books", books);
+		List<Order> orders = appService.getAllOrders();
+		request().setAttribute("orders", orders);
+
+		List<User> users = appService.getAllUsers();
+		request().setAttribute("users", users);
 
 		return SUCCESS;
 	}

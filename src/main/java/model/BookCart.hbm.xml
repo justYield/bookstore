@@ -8,7 +8,14 @@
 			<column name="id" />
 			<generator class="assigned" />
 		</id>
-		<property name="userid" />
-		<property name="bookid" />
+		<property name="userid" type="int">
+			<column name="userid" />
+		</property>
+		<property name="bookid" type="int">
+			<column name="bookid" />
+		</property>
+		<property name="amount" type="int">
+			<column name="amount" />
+		</property>
 	</class>
 </hibernate-mapping>

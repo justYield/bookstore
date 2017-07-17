@@ -1,19 +1,25 @@
-package action.bookAction;
+package action.orderAction;
 
 import action.BaseAction;
-import model.Book;
+import model.Orderitem;
 import service.AppService;
 
-public class BookDetailAction extends BaseAction{
+public class DeleteOrderitemAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
+
 	private int id;
+
 	private AppService appService;
-	
+
+	public int getId() {
+		return id;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setAppService(AppService appService) {
 		this.appService = appService;
 	}
@@ -21,8 +27,9 @@ public class BookDetailAction extends BaseAction{
 	@Override
 	public String execute() throws Exception {
 
-		Book book = appService.getBookById(id);
-		request().setAttribute("detail", book);
+		Orderitem orderitem = appService.getOrderitemById(id);
+		appService.deleteOrderitem(orderitem);
+
 		return SUCCESS;
 	}
 

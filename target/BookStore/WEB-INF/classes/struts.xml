@@ -13,22 +13,22 @@
 		</action>
 
 		<!-- Book -->
-		<action name="listBooks" class="action.AllBooksAction">
+		<action name="listBooks" class="action.bookAction.AllBooksAction">
 			<result name="success">/bookstore/jsp/homepage.jsp</result>
 		</action>
-		<action name="allBooksPro" class="action.AllBooksAction">
+		<action name="allBooksPro" class="action.bookAction.AllBooksAction">
 			<result name="success">/bookstore/jsp/book.jsp</result>
 		</action>
-		<action name="addBookPro" class="action.AddBookAction">
+		<action name="addBookPro" class="action.bookAction.AddBookAction">
 			<result name="success">/bookstore/jsp/book.jsp</result>
 		</action>
-		<action name="updateBookPro" class="action.UpdateBookAction">
+		<action name="updateBookPro" class="action.bookAction.UpdateBookAction">
 			<result name="success">/bookstore/jsp/book.jsp</result>
 		</action>
-		<action name="deleteBookPro" class="action.DeleteBookAction">
+		<action name="deleteBookPro" class="action.bookAction.DeleteBookAction">
 			<result name="success">/bookstore/jsp/book.jsp</result>
 		</action>
-		<action name="detail" class="action.BookDetailAction">
+		<action name="detail" class="action.bookAction.BookDetailAction">
 			<result name="success">/bookstore/jsp/bookDetail.jsp</result>
 		</action>
 

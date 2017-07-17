@@ -1,18 +1,27 @@
-package action;
+package action.orderAction;
 
+import action.BaseAction;
 import model.Orderitem;
 import service.AppService;
 
-public class AddOrderitemAction extends BaseAction {
+public class UpdateOrderitemAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
+	private int id;
 	private int orderid;
 	private int bookid;
 	private int amount;
-	private int bookprice;
 
 	private AppService appService;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getOrderid() {
 		return orderid;
@@ -38,14 +47,6 @@ public class AddOrderitemAction extends BaseAction {
 		this.amount = amount;
 	}
 
-	public int getBookprice() {
-		return bookprice;
-	}
-
-	public void setBookprice(int bookprice) {
-		this.bookprice = bookprice;
-	}
-	
 	public void setAppService(AppService appService) {
 		this.appService = appService;
 	}
@@ -53,8 +54,11 @@ public class AddOrderitemAction extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 
-		Orderitem orderitem = new Orderitem(orderid, bookid, amount);
-		appService.addOrderitem(orderitem);
+		Orderitem orderitem = appService.getOrderitemById(id);
+		orderitem.setOrderid(orderid);
+		orderitem.setBookid(bookid);
+		orderitem.setAmount(amount);
+		appService.updateOrderitem(orderitem);
 
 		return SUCCESS;
 	}

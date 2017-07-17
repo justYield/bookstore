@@ -1,14 +1,16 @@
-package action;
+package action.orderAction;
 
-import model.Orderitem;
+import java.util.List;
+
+import action.BaseAction;
+import model.Order;
 import service.AppService;
 
-public class DeleteOrderitemAction extends BaseAction {
+public class MyOrdersAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private int id;
-
 	private AppService appService;
 
 	public int getId() {
@@ -26,10 +28,8 @@ public class DeleteOrderitemAction extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 
-		Orderitem orderitem = appService.getOrderitemById(id);
-		appService.deleteOrderitem(orderitem);
-
+		List<Order> orders = appService.getOrderByUserid(id);
+		request().setAttribute("myOrder", orders);
 		return SUCCESS;
 	}
-
 }

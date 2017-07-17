@@ -6,6 +6,7 @@ import service.AppService;
 
 public class DeleteBookAction extends BaseAction {
 
+	
 	private static final long serialVersionUID = 1L;
 
 	private int id;

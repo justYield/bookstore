@@ -1,12 +1,12 @@
-package action;
+package action.userAction;
 
 import java.util.List;
 
-import model.Order;
+import action.BaseAction;
 import model.User;
 import service.AppService;
 
-public class AllOrdersAction extends BaseAction {
+public class AllUsersAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,9 +18,6 @@ public class AllOrdersAction extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
-
-		List<Order> orders = appService.getAllOrders();
-		request().setAttribute("orders", orders);
 
 		List<User> users = appService.getAllUsers();
 		request().setAttribute("users", users);

@@ -3,10 +3,13 @@ package service.impl;
 import java.util.List;
 
 import model.Book;
+import model.BookCart;
 import model.Order;
 import model.Orderitem;
+import model.Picture;
 import model.User;
 import service.AppService;
+import dao.BookCartDao;
 import dao.BookDao;
 import dao.OrderDao;
 import dao.OrderitemDao;
@@ -23,6 +26,7 @@ public class AppServiceImpl implements AppService {
 	private OrderDao orderDao;
 	private OrderitemDao orderitemDao;
 	private UserDao userDao;
+	private BookCartDao bookCartDao;
 
 	public void setBookDao(BookDao bookDao) {
 		this.bookDao = bookDao;
@@ -38,6 +42,10 @@ public class AppServiceImpl implements AppService {
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	public void setBookCartDao(BookCartDao bookCartDao) {
+		this.bookCartDao = bookCartDao;
 	}
 
 	/**
@@ -60,8 +68,17 @@ public class AppServiceImpl implements AppService {
 		return bookDao.getBookById(id);
 	}
 
+	@Override
+	public Book getBookByName(String name) {
+		return bookDao.getBookByName(name);
+	}
+	
 	public List<Book> getAllBooks() {
 		return bookDao.getAllBooks();
+	}
+	
+	public Picture getPictureById(int id){
+		return bookDao.getPictureById(id);
 	}
 
 	/**
@@ -82,6 +99,11 @@ public class AppServiceImpl implements AppService {
 
 	public Order getOrderById(int id) {
 		return orderDao.getOrderById(id);
+	}
+	
+	@Override
+	public List<Order> getOrderByUserid(int id) {
+		return orderDao.getOrderByUserId(id);
 	}
 
 	public List<Order> getAllOrders() {
@@ -149,6 +171,40 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public User getUserByUsername(String username) {
 		return userDao.getUserByUsername(username);
+	}
+
+	/**
+	 * book cart
+	 * 
+	 */
+	@Override
+	public Integer addBookCart(BookCart bookCart) {
+		return bookCartDao.save(bookCart);
+	}
+
+	@Override
+	public void deleteBookCart(BookCart bookCart) {
+		bookCartDao.delete(bookCart);
+	}
+
+	@Override
+	public void updateBookCart(BookCart bookCart) {
+		bookCartDao.update(bookCart);
+	}
+
+	@Override
+	public BookCart getBookCartById(int id) {
+		return bookCartDao.getBookCartById(id);
+	}
+
+	@Override
+	public List<BookCart> getBookCartByUserId(int userid) {
+		return bookCartDao.getBookCartByUserid(userid);
+	}
+
+	@Override
+	public List<BookCart> getAllBookCarts() {
+		return bookCartDao.getAllBookCarts();
 	}
 
 }

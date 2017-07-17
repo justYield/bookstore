@@ -24,10 +24,10 @@
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg ref="mongo"/>
-    <constructor-arg name="databaseName" value="db"/>
+    <constructor-arg name="databaseName" value="bookstore"/>
     </bean>
     
-    <mongo:db-factory id="mongoDbFactory" dbname="db" />
+    <mongo:db-factory id="mongoDbFactory" dbname="bookstore" />
     <mongo:mapping-converter id="converter" />
 
     <bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
@@ -44,6 +44,7 @@
 				<value>model/Order.hbm.xml</value>
 				<value>model/Orderitem.hbm.xml</value>
 				<value>model/User.hbm.xml</value>
+				<value>model/BookCart.hbm.xml</value>
 			</list>
 		</property>
 		<!-- Hibernate SessionFactory -->
@@ -71,6 +72,9 @@
 	<bean id="userDao" class="dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="bookCartDao" class="dao.impl.BookCartDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- Service -->
 	<bean id="appService" class="service.impl.AppServiceImpl">
@@ -79,11 +83,7 @@
 		<property name="orderDao" ref="orderDao"></property>
 		<property name="orderitemDao" ref="orderitemDao"></property>
 		<property name="userDao" ref="userDao"></property>
-	</bean>
-	
-	<bean id="bookService" class="service.impl.BookServiceImpl">
-		<!-- DAO -->
-		<property name="bookDao" ref="bookDao"></property>
+		<property name="bookCartDao" ref="bookCartDao"></property>
 	</bean>
 
 	<!-- HibernateTransactionManager -->

@@ -8,6 +8,7 @@ import service.AppService;
 
 public class UpdateBookAction extends BaseAction {
 
+	
 	private static final long serialVersionUID = 1L;
 
 	private int id;

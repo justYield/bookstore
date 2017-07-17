@@ -15,11 +15,11 @@ public interface BookDao {
 	public void update(Book book);
 
 	public Book getBookById(int id);
+	
+	public Book getBookByName(String name);
 
 	public List<Book> getAllBooks();
 	
     public Picture getPictureById(int id);
-	
-	public boolean uploadPicture(int id,File file,String contentType,String fileName);
 
 }

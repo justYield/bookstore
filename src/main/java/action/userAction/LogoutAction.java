@@ -1,4 +1,6 @@
-package action;
+package action.userAction;
+
+import action.BaseAction;
 
 public class LogoutAction extends BaseAction{
 
@@ -8,6 +10,7 @@ public class LogoutAction extends BaseAction{
 	@Override
 	public String execute() throws Exception {
 		session().removeAttribute("username");
+		session().removeAttribute("id");
 		session().removeAttribute("role");
 		return SUCCESS;
 	}

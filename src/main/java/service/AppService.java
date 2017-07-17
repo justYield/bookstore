@@ -3,8 +3,10 @@ package service;
 import java.util.List;
 
 import model.Book;
+import model.BookCart;
 import model.Order;
 import model.Orderitem;
+import model.Picture;
 import model.User;
 
 /**
@@ -25,8 +27,12 @@ public interface AppService {
 	public void updateBook(Book book);
 
 	public Book getBookById(int id);
+	
+	public Book getBookByName(String name);
 
 	public List<Book> getAllBooks();
+	
+	public Picture getPictureById(int id);
 
 	/**
 	 * order
@@ -39,6 +45,8 @@ public interface AppService {
 	public void updateOrder(Order order);
 
 	public Order getOrderById(int id);
+	
+	public List<Order> getOrderByUserid(int id);
 
 	public List<Order> getAllOrders();
 
@@ -55,6 +63,22 @@ public interface AppService {
 	public Orderitem getOrderitemById(int id);
 
 	public List<Orderitem> getAllOrderitems();
+	
+	/**
+	 * book cart
+	 * 
+	 */
+	public Integer addBookCart(BookCart bookCart);
+
+	public void deleteBookCart(BookCart bookCart);
+
+	public void updateBookCart(BookCart bookCart);
+
+	public BookCart getBookCartById(int id);
+	
+	public List<BookCart> getBookCartByUserId(int userid);
+
+	public List<BookCart> getAllBookCarts();
 
 	/**
 	 * user

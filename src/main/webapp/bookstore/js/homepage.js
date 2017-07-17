@@ -1,51 +1,60 @@
 $(function() {	
-	$("#add").click(function(e) {
+	$(".add").click(function(e) {
 		$('#modalTitle').html("Add book");
 		var dataset = e.currentTarget.dataset;
-		var id = dataset.id;
-		var user = dataset.user;
+		var bookid = dataset.bookid;
+		var userid = dataset.userid;
 		$("input[name='amount']").val(1);
-		$("#save").attr("data-id", dataset.id);
+		$("#save").attr("data-bookid", dataset.bookid);
+		$("#save").attr("data-userid", dataset.userid);
 		$("#save").attr("data-user", dataset.user);
 		$('#modal').modal('show');
 	});
 	
+/*	$("#modal").validate({
+		rules : {
+			amount : {
+				required : true,
+				digits : true,
+				min : 0
+			}
+		},
+		messages : {
+			password : {
+				required : "请输入数量",
+				digits : "请输入数字",
+				min : "输入应大于零"
+			}
+		}
+	});*/
+	
 	$("#save").click(function(e) {
 		var amount = $("input[name='amount']").val();
 		var dataset = e.currentTarget.dataset;
-		var id = dataset.id;
+		var bookid = dataset.bookid;
+		var userid = dataset.userid;
 		var user = dataset.user;
-		if(user != "null" && amount > 0){
+		if(user != "null"){
 			jQuery.ajax({
-				url : '#',       //todo
+				url : 'addToCart',
 				processData : true,
 				dataType : "text",
 				data : {
-					id : id,
-					user : user,
+					bookid : bookid,
+					userid : userid,
 					amount : amount
 				},
 				success : function(data) {
 					bootbox.alert({
-						message : "Add Successfully!",
-						callback : function() {
-							location.reload();
-						}
+						message : "Add Successfully!"
 					});
 				}
 			});
 	
 			$('#modal').modal('hide');
-		} else if(user == "null") {
-			bootbox.alert({
-				message : 'Please log in',
-				callback : function() {
-					location.reload();
-				}
-			});
 		} else {
 			bootbox.alert({
-				message : 'Please enter valid amount',
+				message : 'Please log in',
 				callback : function() {
 					location.reload();
 				}

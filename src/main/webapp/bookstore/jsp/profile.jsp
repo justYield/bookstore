@@ -1,4 +1,4 @@
-<%@ page import="model.Book"%>
+<%@ page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -20,7 +20,7 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body>
-	<%Book book = (Book)request.getAttribute("detail"); %>
+	<%User user = (User)request.getAttribute("profile"); %>
 
 	<div id="wrapper">
 		<!-- Navigation -->
@@ -72,54 +72,27 @@
 			</div>
 			<!-- /.sidebar-collapse -->
 		</div>
+		
 		<!-- /.navbar-static-side --> </nav>
+
 
 		<div id="page-wrapper">
 			
 			<div class="row">
 			    <div class="col-lg-1"></div>
 				<div class="col-lg-5">
-					<div>
-						<h2><%=book.getTitle()%></h2>
-					</div>
-					<div>
-						<div>
-							<h3>Author</h3>
-						</div>
-						<div>
-							<p><%=book.getAuthor()%></p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<h3>Publisher</h3>
-						</div>
-						<div>
-							<p><%=book.getPublisher()%></p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<h3>Price</h3>
-						</div>
-						<div>
-							<p><%=(float)book.getPrice()/100%>元</p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<h3>Date</h3>
-						</div>
-						<div>
-							<p><%=book.getDate()%></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-5">
-				<a href='bookPicture?id=<%=book.getId()%>'><img
-					class="img-responsive" id="cover"
-					src='bookPicture?id=<%=book.getId()%>'/></a>
-
+					<form action="updateProfile">
+						<h3>ID</h3>
+						<input type="text" class="form-control" name="id"
+							value="<%=user.getId()%>" readonly="readonly" />
+						<h3>Name</h3>
+						<input type="text" class="form-control" name="username"
+							value="<%=user.getUsername()%>" required="true" /> 
+						<h3>Password</h3>
+						<input type="text" class="form-control" name="password"
+							value="<%=user.getPassword()%>" required="true" />
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+					</form>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>

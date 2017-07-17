@@ -13,6 +13,8 @@ public interface OrderDao {
 	public void update(Order order);
 
 	public Order getOrderById(int id);
+	
+	public List<Order> getOrderByUserId(int id);
 
 	public List<Order> getAllOrders();
 

@@ -6,7 +6,7 @@
 <title>BookStore</title>
 
 <%
-	response.sendRedirect("homepage");
+	response.sendRedirect("/BookStore/bookstore/jsp/homepage.jsp");
 %>
 
 </head>

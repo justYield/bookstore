@@ -1,14 +1,14 @@
-package action;
+package action.userAction;
 
-import model.Order;
+import action.BaseAction;
+import model.User;
 import service.AppService;
 
-public class DeleteOrderAction extends BaseAction {
+public class ProfileAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-
 	private AppService appService;
 
 	public int getId() {
@@ -25,10 +25,8 @@ public class DeleteOrderAction extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
-
-		Order order = appService.getOrderById(id);
-		appService.deleteOrder(order);
-
+		User user = appService.getUserById(id);
+		request().setAttribute("profile", user);
 		return SUCCESS;
 	}
 

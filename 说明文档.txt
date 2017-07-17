@@ -1,0 +1,31 @@
+bookstore说明文档
+
+综述
+    此次迭代运用JavaEE环境，Marven管理，SSH框架，Mysql和Mongodb数据库，在助教第三次迭代的样例上改进而成。
+    main下三个文件夹java，resources，webapp。
+    java文件夹内含各个类的java文件，xml配置文件（用于Hibernate连接数据库），以及SSH所用到的Dao，Service，Action层的java代码。
+    resources下applicationContext.xml用于Spring注入，在此次bookstore实现了Dao和Service的注入，而Action仍由struts控制，并没有注入。struts.xml用于struts对于Action的控制转发。
+    webapp文件夹下含各个页面的jsp文件，js脚本以及css。
+    以下分各要求功能详细介绍。
+
+1.用户注册、登陆登出
+    在homepage的侧边栏有导向登录和注册的链接。
+    单击登录会弹出模态框，并将得到的数据传给后台LoginAction完成登陆。登陆后用户的信息将保存在session中以便于使用。
+    单击注册会重定向到注册界面，用户输入相关信息，由js脚本检查合法性后传给后台AddUserAction。注册后信息存入Mysql的users表中，默认为普通用户。注册后即可登录。
+    登出则删除session中暂存信息，将页面重定向到homepage。
+
+2.书籍列出，详细信息浏览与搜索
+    在主页会有书籍除了图片外的信息，单击detail将会传bookid给BookDetailAction。Action得到书籍信息后由request传回前端并定向到bookdetail.jsp显示。同时bookdetail会调用BookPictureAction从mongodb获取图片。
+    页面顶端有Search框，输入关键字后调用SearchBookAction搜索，目前只能搜索书名且不具备模糊搜索的能力。
+
+3.加入购物车
+    在主页书籍后有加入购物车按钮，单击后弹出模态框，输入个数后调用AddToCartAction将书籍加入购物车，存入Mysql中bookcarts表。用户可查看自己的购物车并进行购买。目前还无法在购物车界面挑选部分书籍进行购买。购买后orders表新增一个orders，数据从bookcarts中删除并加入orderitems表中。
+
+4.用户信息
+    用户可进入profile.jsp查看并修改自己的用户信息。修改调用UpdateUserAction将修改后内容存入数据库，同时修改session中可能改变的用户信息。
+
+5.管理员管理用户和书籍
+    管理员可以在管理界面看到后台的users，orders，orderitems，books四张表并进行CRUD。各个操作分别调用与之相关的CRUDAction。
+
+
+

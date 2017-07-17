@@ -1,15 +1,24 @@
-package action;
+package action.userAction;
 
-import java.util.List;
-
+import action.BaseAction;
 import model.User;
 import service.AppService;
 
-public class AllUsersAction extends BaseAction {
+public class DeleteUserAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
+	private int id;
+
 	private AppService appService;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public void setAppService(AppService appService) {
 		this.appService = appService;
@@ -18,9 +27,10 @@ public class AllUsersAction extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 
-		List<User> users = appService.getAllUsers();
-		request().setAttribute("users", users);
+		User user = appService.getUserById(id);
+		appService.deleteUser(user);
 
 		return SUCCESS;
 	}
+
 }

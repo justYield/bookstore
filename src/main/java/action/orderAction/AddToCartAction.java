@@ -1,34 +1,22 @@
-package action;
+package action.orderAction;
 
-import model.Orderitem;
+import java.sql.Date;
+
+import action.BaseAction;
+import model.BookCart;
+import model.Order;
 import service.AppService;
 
-public class UpdateOrderitemAction extends BaseAction {
+public class AddToCartAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-	private int orderid;
 	private int bookid;
+	private int userid;
 	private int amount;
 
 	private AppService appService;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getOrderid() {
-		return orderid;
-	}
-
-	public void setOrderid(int orderid) {
-		this.orderid = orderid;
-	}
 
 	public int getBookid() {
 		return bookid;
@@ -36,6 +24,14 @@ public class UpdateOrderitemAction extends BaseAction {
 
 	public void setBookid(int bookid) {
 		this.bookid = bookid;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 	public int getAmount() {
@@ -52,13 +48,11 @@ public class UpdateOrderitemAction extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
-
-		Orderitem orderitem = appService.getOrderitemById(id);
-		orderitem.setOrderid(orderid);
-		orderitem.setBookid(bookid);
-		orderitem.setAmount(amount);
-		appService.updateOrderitem(orderitem);
-
+		BookCart bookCart = new BookCart();
+		bookCart.setBookid(bookid);
+		bookCart.setUserid(userid);
+		bookCart.setAmount(amount);
+		appService.addBookCart(bookCart);
 		return SUCCESS;
 	}
 

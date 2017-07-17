@@ -40,6 +40,15 @@ public class BookDaoImpl extends HibernateDaoSupport implements BookDao {
 		return book;
 	}
 
+	@Override
+	public Book getBookByName(String name) {
+		@SuppressWarnings("unchecked")
+		List<Book> books = (List<Book>) getHibernateTemplate().find(
+				"from Book as b where b.title=?", name);
+		Book book = books.size() > 0 ? books.get(0) : null;
+		return book;
+	}
+	
 	public List<Book> getAllBooks() {
 		@SuppressWarnings("unchecked")
 		List<Book> books = (List<Book>) getHibernateTemplate()
@@ -54,7 +63,7 @@ public class BookDaoImpl extends HibernateDaoSupport implements BookDao {
 	}
 	
 	public Picture getPictureById(int id) {
-		GridFSDBFile result = GridFsTemplate.findOne(new Query(Criteria.where("metadata.id").is(id)));
+		GridFSDBFile result = GridFsTemplate.findOne(new Query(Criteria.where("filename").is(String.valueOf(id)+".jpg")));
 		if (result!= null){
 			Picture picture =new Picture(result.getContentType(),result.getInputStream());
 			return picture;
@@ -65,18 +74,6 @@ public class BookDaoImpl extends HibernateDaoSupport implements BookDao {
 			return picture;
 		}
 		
-	}
-	
-	public boolean uploadPicture(int id,File file,String contentType,String fileName){
-		try{
-			FileInputStream inputStream = new FileInputStream(file);
-			DBObject metadata = new BasicDBObject("id",id);
-			GridFsTemplate.store(inputStream, fileName, contentType, metadata);
-			return true;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 }

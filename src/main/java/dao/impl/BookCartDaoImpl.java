@@ -25,14 +25,14 @@ public class BookCartDaoImpl extends HibernateDaoSupport implements BookCartDao 
 	public List<BookCart> getBookCartByUserid(int userid) {
 		@SuppressWarnings("unchecked")
 		List<BookCart> bookCarts = (List<BookCart>) getHibernateTemplate().find(
-				"from BookCart as t where t.userid=?", userid);
+				"from BookCart as b where b.userid=?", userid);
 		return bookCarts;
 	}
 	
 	public BookCart getBookCartById(int id) {
 		@SuppressWarnings("unchecked")
 		List<BookCart> bookCarts = (List<BookCart>) getHibernateTemplate().find(
-				"from BookCart as d where d.id=?", id);
+				"from BookCart as b where b.id=?", id);
 		BookCart bookCart = bookCarts.size() > 0 ? bookCarts.get(0) : null;
 		return bookCart;
 	}

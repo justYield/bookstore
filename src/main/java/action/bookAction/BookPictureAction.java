@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
 import action.BaseAction;
 import model.Picture;
-import service.BookService;
+import service.AppService;
 
 public class BookPictureAction extends BaseAction{
 
@@ -14,7 +14,7 @@ public class BookPictureAction extends BaseAction{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private BookService bookService;
+	private AppService appService;
 	private GridFsTemplate gridFsTemplate;
 	private InputStream inputStream;
 	private String contentType;
@@ -27,12 +27,12 @@ public class BookPictureAction extends BaseAction{
 		this.id = id;
 	}
 
-	public BookService getBookService() {
-		return bookService;
+	public AppService getAppService() {
+		return appService;
 	}
 
-	public void setBookService(BookService bookService) {
-		this.bookService = bookService;
+	public void setAppService(AppService appService) {
+		this.appService = appService;
 	}
 
 	public GridFsTemplate getGridFsTemplate() {
@@ -60,7 +60,7 @@ public class BookPictureAction extends BaseAction{
 	}
 
 	public String execute() throws Exception {
-		    Picture picture = bookService.getPictureById(id);
+		    Picture picture = appService.getPictureById(id);
 		    setInputStream(picture.getInputStream());
 		    setContentType(picture.getContentType());
 			return SUCCESS;

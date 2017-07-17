@@ -1,5 +1,6 @@
-package action;
+package action.userAction;
 
+import action.BaseAction;
 import model.User;
 import service.AppService;
 
@@ -41,6 +42,7 @@ public class LoginAction extends BaseAction{
 		if(appService.checkLogin(user)){
 			session().setAttribute("username", username);
 			user = appService.getUserByUsername(username);
+			session().setAttribute("id", user.getId());
 			session().setAttribute("role", user.getRole());
 			return SUCCESS;
 		}

@@ -41,7 +41,7 @@
 			style="margin-bottom: 0">
 
 		<div class="navbar-header">
-			<a class="navbar-brand" href="homepage">BookStore</a>
+			<a class="navbar-brand" href="homepage.jsp">BookStore</a>
 		</div>
 		<!-- /.navbar-static-side --> </nav>
 
@@ -59,7 +59,7 @@
 										<input type="text" class="form-control" id="username"
 											name="username" placeholder="请输入用户名" required="true"
 											maxlength="14">
-										<p class="help-block">不超过7个汉字（即14字节）</p>
+										<p class="help-block"></p>
 									</div>
 								</div>
 								<div class="form-group">
@@ -68,7 +68,7 @@
 										<input type="password" class="form-control" id="password"
 											name="password" placeholder="请输入密码" required="true"
 											maxlength="20">
-										<p class="help-block">长度在6至20字符之间</p>
+										<p class="help-block">长度大于6位</p>
 									</div>
 								</div>
 								<div class="form-group">
@@ -77,7 +77,7 @@
 										<input type="password" class="form-control"
 											id="confirmPassword" name="confirmPassword"
 											placeholder="请再次输入密码" required="true" maxlength="20">
-										<p class="help-block">长度在6至20字符之间</p>
+										<p class="help-block">长度大于6位</p>
 									</div>
 								</div>
 							</div>

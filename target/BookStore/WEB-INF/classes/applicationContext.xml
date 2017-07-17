@@ -24,10 +24,10 @@
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg ref="mongo"/>
-    <constructor-arg name="databaseName" value="db"/>
+    <constructor-arg name="databaseName" value="bookstore"/>
     </bean>
     
-    <mongo:db-factory id="mongoDbFactory" dbname="db" />
+    <mongo:db-factory id="mongoDbFactory" dbname="bookstore" />
     <mongo:mapping-converter id="converter" />
 
     <bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
@@ -60,6 +60,7 @@
 	<!-- DAO Bean -->
 	<bean id="bookDao" class="dao.impl.BookDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="GridFsTemplate" ref="gridFsTemplate" />
 	</bean>
 	<bean id="orderDao" class="dao.impl.OrderDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />

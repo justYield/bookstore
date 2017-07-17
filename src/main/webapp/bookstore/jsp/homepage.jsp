@@ -23,19 +23,14 @@
 <link href="<%=path%>/bookstore/css/bookstore.css" rel="stylesheet">
 <link href="<%=path%>/bookstore/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-<script src="<%=path%>/bookstore/js/homepage.js"></script>
+
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script
 	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
-<script
-	src="https://cdn.bootcss.com/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <link
 	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="<%=path%>/css/login_style.css" rel="stylesheet">
-<link href="<%=path%>/css/yxdefault.css" rel="stylesheet">
-<link href="<%=path%>/css/index.css" rel="stylesheet">
+<script src="<%=path%>/bookstore/js/homepage.js"></script>
 </head>
 
 <script>
@@ -62,13 +57,13 @@
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0">
 
-		<form class="search-bar">
+		<form class="search-bar" action="search">
 			<input type="text" name="searchString" />
 			<button class="btn btn-default" type="submit">Search</button>
 		</form>
 
 		<div class="navbar-header">
-			<a class="navbar-brand" href="homepage">BookStore</a>
+			<a class="navbar-brand" href="homepage.jsp">BookStore</a>
 		</div>
 
 		<div class="navbar-default sidebar" role="navigation">
@@ -84,10 +79,10 @@
 					<%} else if(session.getAttribute("role").equals("user")) {%>
 					<li><span>Hi, <s:property value="#session.username" />!
 					</span></li>
-					<li><a href="#"><i class="fa fa-user fa-fw"></i> User Info</a></li>
-					<li><a href="myOrdersPro"><i class="fa fa-reorder fa-fw"></i>
+					<li><a href="profile?id=<%=session.getAttribute("id")%>"><i class="fa fa-user fa-fw"></i> User Info</a></li>
+					<li><a href="myOrdersPro?id=<%=session.getAttribute("id")%>"><i class="fa fa-reorder fa-fw"></i>
 							My Orders</a></li>
-					<li><a href="myCartPro"><i
+					<li><a href="myCartPro?id=<%=session.getAttribute("id")%>"><i
 							class="fa fa-shopping-cart fa-fw"></i> My Cart</a></li>
 					<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
 							Log out</a></li>
@@ -95,8 +90,7 @@
 					<li><span>Hi, <s:property value="#session.username" />!
 					</span></li>
 					<li><a href="#"><i class="fa fa-user fa-fw"></i> User Info</a></li>
-					<li><a href="allUsersPro" class="active"><i
-							class="fa fa-user fa-fw"></i> Manage</a></li>
+					<li><a href="allUsersPro"><i class="fa fa-user fa-fw"></i> Manage</a></li>
 					<li><a href="myOrdersPro"><i class="fa fa-reorder fa-fw"></i>
 							My Orders</a></li>
 					<li><a href="myCartPro"><i
@@ -120,9 +114,9 @@
 				</div>
 				<form class="modal-body form-signin" action="login">
 					<h2 class="form-signin-heading">Please login</h2>
-					<input type="text" class="form-control" name="name"
-						placeholder="Name" required="true" autofocus="" /> <input
-						type="password" class="form-control" name="pwd"
+					<input type="text" class="form-control" name="username"
+						placeholder="Name" required="true" autofocus="" /> 
+					<input type="password" class="form-control" name="password"
 						placeholder="Password" required="true" />
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 				</form>
@@ -169,13 +163,15 @@
 											<td><%=book.getPublisher()%></td>
 											<td><%=book.getDate()%></td>
 											<td>
-												<button class="btn btn-default" type="button" id="add"
-													data-id="<%=book.getId()%>"
-													data-user="<%=session.getAttribute("username")%>">
+												<button class="btn btn-default add" type="button"
+													data-bookid="<%=book.getId()%>" 
+													data-user="<%=session.getAttribute("username")%>"
+													data-userid="<%=session.getAttribute("id")%>">
 													<i class="fa fa-shopping-cart" title="add book to cart"></i>
-												</button> <a href="detail?id=<%=book.getId()%>"> <i
-													class="fa fa-info" title="Book info">&nbsp;detail</i>
-											</a>
+												</button>
+												 <a href="detail?id=<%=book.getId()%>"> 
+												 <i class="fa fa-info" title="Book info">&nbsp;detail</i>
+												</a>
 											</td>
 											<%
 											}

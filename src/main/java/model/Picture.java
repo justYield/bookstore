@@ -3,6 +3,7 @@ package model;
 import java.io.InputStream;
 
 public class Picture {
+	
 	private String contentType;
 	private InputStream inputStream;
 	

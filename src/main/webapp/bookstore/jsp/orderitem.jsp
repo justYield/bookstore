@@ -43,7 +43,7 @@
 			style="margin-bottom: 0">
 
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">BookStore</a>
+			<a class="navbar-brand" href="homepage.jsp">BookStore</a>
 		</div>
 
 		<div class="navbar-default sidebar" role="navigation">

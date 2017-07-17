@@ -1,15 +1,20 @@
-<%@ page import="model.Book"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="model.Order"%>
+<%@ page import="model.Orderitem"%>
+<%@ page import="model.User"%>
+<%@ page import="java.util.Set"%>
+<%@ page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
 <title>BookStore</title>
+
 <%
 	String path = request.getContextPath();
 %>
-<script src="<%=path%>/bookstore/js/jquery.min.js"></script>
 <link href="<%=path%>/bookstore/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/bookstore/css/dataTables.bootstrap.css"
 	rel="stylesheet">
@@ -19,18 +24,18 @@
 <link href="<%=path%>/bookstore/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 </head>
-<body>
-	<%Book book = (Book)request.getAttribute("detail"); %>
 
+<body>
+	<%
+	ArrayList<Order> orderList = new ArrayList<Order>();
+	if (request.getAttribute("myOrder") != null) {
+	    orderList = (ArrayList<Order>) request.getAttribute("myOrder");
+	}
+	%>
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0">
-
-		<form class="search-bar">
-			<input type="text" name="searchString" />
-			<button class="btn btn-default" type="submit">Search</button>
-		</form>
 
 		<div class="navbar-header">
 			<a class="navbar-brand" href="homepage.jsp">BookStore</a>
@@ -75,51 +80,55 @@
 		<!-- /.navbar-static-side --> </nav>
 
 		<div id="page-wrapper">
-			
 			<div class="row">
-			    <div class="col-lg-1"></div>
-				<div class="col-lg-5">
-					<div>
-						<h2><%=book.getTitle()%></h2>
-					</div>
-					<div>
-						<div>
-							<h3>Author</h3>
-						</div>
-						<div>
-							<p><%=book.getAuthor()%></p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<h3>Publisher</h3>
-						</div>
-						<div>
-							<p><%=book.getPublisher()%></p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<h3>Price</h3>
-						</div>
-						<div>
-							<p><%=(float)book.getPrice()/100%>元</p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<h3>Date</h3>
-						</div>
-						<div>
-							<p><%=book.getDate()%></p>
-						</div>
-					</div>
+				<div class="col-lg-12">
+					<h1 class="page-header">My Orders</h1>
 				</div>
-				<div class="col-lg-5">
-				<a href='bookPicture?id=<%=book.getId()%>'><img
-					class="img-responsive" id="cover"
-					src='bookPicture?id=<%=book.getId()%>'/></a>
-
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<div class="dataTable_wrapper">
+								<table class="table table-striped table-bordered table-hover"
+									id="dataTables">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Date</th>
+											<th>Orderitem ID List</th>
+										</tr>
+									</thead>
+									<tbody>
+										<%
+											for (int i = 0; i < orderList.size(); i++) {
+												Order order = orderList.get(i);
+												Set<Orderitem> orderitems = order.getOrderitems();
+												ArrayList<String> orderitemStr = new ArrayList<String>();
+																												
+												Iterator iterator = orderitems.iterator();     
+												while(iterator.hasNext()){
+													Orderitem item = (Orderitem)iterator.next();
+													orderitemStr.add(item.getId()+"");
+												}
+										%>
+										<tr>
+											<td><%=order.getId()%></td>
+											<td><%=order.getDate()%></td>
+											<td><%=orderitemStr%></td>
+										</tr>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -129,5 +138,23 @@
 	</div>
 	<!-- /#wrapper -->
 
+
+	<script src="<%=path%>/bookstore/js/jquery.min.js"></script>
+	<script src="<%=path%>/bookstore/js/bootstrap.min.js"></script>
+	<script src="<%=path%>/bookstore/js/jquery.dataTables.min.js"></script>
+	<script src="<%=path%>/bookstore/js/dataTables.bootstrap.min.js"></script>
+	<script src="<%=path%>/bookstore/js/bookstore.js"></script>
+	<script src="<%=path%>/bookstore/js/bootbox.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#dataTables').DataTable({
+				responsive : true
+			});
+		});
+	</script>
+
 </body>
+
 </html>
+

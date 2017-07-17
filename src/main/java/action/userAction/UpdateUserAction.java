@@ -1,17 +1,27 @@
-package action;
+package action.userAction;
 
+import action.BaseAction;
 import model.User;
 import service.AppService;
 
-public class AddUserAction extends BaseAction {
+public class UpdateUserAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
+	private int id;
 	private String username;
 	private String password;
 	private String role;
 
 	private AppService appService;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -43,16 +53,14 @@ public class AddUserAction extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
-		if (role == null) {
-			role = "user";
-		}
-		User user = new User(username, password, role);
-		if (appService.getUserByUsername(username) == null) {
-			appService.addUser(user);
-			return SUCCESS;
-		} else {
-			return INPUT;
-		}
+
+		User user = appService.getUserById(id);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setRole(role);
+		appService.updateUser(user);
+
+		return SUCCESS;
 	}
 
 }
